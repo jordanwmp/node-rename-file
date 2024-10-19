@@ -1,4 +1,6 @@
 import fs from 'fs'
+import chalk from 'chalk'
+
 const renameImages = (path, allNames) => {
     fs
         .readdirSync(path)
@@ -7,12 +9,9 @@ const renameImages = (path, allNames) => {
         })
         .map((file, index) => {
             try {
-                console.log('file', file)
-                fs.rename(`${path}${file}`, `${path}${allNames[index]}.jpg`, () => {
-                    console.log('name replaced')
-                })
+                fs.rename(`${path}${file}`, `${path}${allNames[index]}.jpg`, () => {})
             } catch (error) {
-                console.log('error on rename ', error)
+                console.log(chalk.white.bgYellow(`Error on rename image ${file}`))
             }
         })
 

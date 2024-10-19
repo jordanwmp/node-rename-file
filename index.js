@@ -1,6 +1,9 @@
 import inquirer from "inquirer";
+import chalk from 'chalk';
 import renameImages from "./src/renameImages.js";
 import { getNames } from "./src/writeData.js";
+
+console.log(chalk.white.bgBlue("Let's rename a list of image from a object with data"))
 
 inquirer.prompt([
     {
@@ -19,8 +22,9 @@ inquirer.prompt([
         if (nameFile && pathDestiny) {
             const names = getNames(nameFile)
             renameImages(pathDestiny, names)
+            console.log(chalk.white.bgGreen('The images renamed successfully'))
         } else {
-            console.log('Enter the .json file and the path of images to be renamed')
+            console.log(chalk.white.bgRed('Enter the .json file and the path of images to be renamed'))
         }
     })
     .catch((err) => {
